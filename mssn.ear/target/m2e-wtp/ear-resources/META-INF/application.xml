@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC
+	"-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN"
+	"http://java.sun.com/dtd/application_1_3.dtd">
+<application>
+  <display-name>mssn.ear</display-name>
+  <module>
+    <java>mssn.sys-0.0.1-SNAPSHOT.jar</java>
+  </module>
+  <module>
+    <java>mssn.code-0.0.1-SNAPSHOT.jar</java>
+  </module>
+  <module>
+    <web>
+      <web-uri>mssn.web-0.0.1-SNAPSHOT.war</web-uri>
+      <context-root>/mssn.web</context-root>
+    </web>
+  </module>
+</application>
