@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+   <parent>  
+       <groupId>com.wuzhenbao</groupId>  
+       <artifactId>mssn</artifactId>  
+       <version>0.0.1-SNAPSHOT</version>  
+       <relativePath>../pom.xml</relativePath>  
+   </parent>
+  
+  <artifactId>mssn.ear</artifactId>
+  <packaging>ear</packaging>
+  
+  <dependencies>  
+       <dependency>  
+            <groupId>com.wuzhenbao</groupId>  
+            <artifactId>mssn.sys</artifactId>  
+            <version>0.0.1-SNAPSHOT</version>  
+            <type>jar</type>  
+        </dependency>  
+        <dependency>  
+            <groupId>com.wuzhenbao</groupId>  
+            <artifactId>mssn.code</artifactId>  
+            <version>0.0.1-SNAPSHOT</version>  
+            <type>jar</type>  
+        </dependency>  
+        <dependency>  
+            <groupId>com.wuzhenbao</groupId>  
+            <artifactId>mssn.web</artifactId>  
+            <version>0.0.1-SNAPSHOT</version>  
+            <type>war</type>  
+        </dependency>  
+    </dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				 <groupId>org.apache.maven.plugins</groupId>
+				  <artifactId>maven-ear-plugin</artifactId>
+				  <version>2.10.1</version>
+				<configuration>
+					<earSourceDirectory>earPackage</earSourceDirectory>
+					<fileNameMapping>standard</fileNameMapping>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+						<manifestEntries>
+							<Class-Path></Class-Path>
+						</manifestEntries>
+					</archive>
+					<modules>
+						<jarModule>
+							<groupId>com.wuzhenbao</groupId>
+							<artifactId>mssn.sys</artifactId>
+							<includeInApplicationXml>true</includeInApplicationXml>
+						</jarModule>
+						<jarModule>
+							<groupId>com.wuzhenbao</groupId>
+							<artifactId>mssn.code</artifactId>
+							<includeInApplicationXml>true</includeInApplicationXml>
+						</jarModule>
+						<webModule>
+							<groupId>com.wuzhenbao</groupId>
+							<artifactId>mssn.web</artifactId>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>  
+  
+</project>
