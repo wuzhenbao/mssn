@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tree Actions - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+	
+    <script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="hadoop/hive/hive.js?version=10017"></script>
+	
+</head>
+<body>
+	<h2>Hive DB</h2>
+	<p>Click the buttons below to perform actions.</p>
+	<div style="margin:5px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="openHdfsDir()">创建外部表</a>
+		<a href="#" class="easyui-linkbutton" onclick="describeTables()">表详情</a>
+		<a href="#" class="easyui-linkbutton" onclick="expandTo()">选中</a>
+		<a href="#" class="easyui-linkbutton" onclick="getSelected()">弹出选中</a>
+		<a href="#" class="easyui-linkbutton" onclick="createFolder()">新建Table</a>
+		<a href="#" class="easyui-linkbutton" onclick="refreshHDFSDir()">刷新</a>
+		<a href="#" class="easyui-linkbutton" onclick="uploadFileDialog()">删除Table</a>
+		<a href="#" class="easyui-linkbutton" onclick="deleteFolderOrFile()">Delete Folder/File</a>
+	</div>
+	<div class="easyui-panel" style="padding:5px">
+		<ul id="hiveTree" class="easyui-tree" 
+		data-options="url:'/mssn/service/hive/hiveService/getAllTablesName',
+		onLoadSuccess:loadSuccess, 
+		onClick:treeClick,
+		method:'get',
+		animate:true"></ul>
+	</div>
+	<br/>
+	<div>
+		<table id="hiveGrid" title="Client Side Pagination"
+			style="width: 100%; height: 300px"
+			data-options="
+					rownumbers:true,
+					singleSelect:true,
+					autoRowHeight:false,
+					pagination:true,
+					pageSize:10">
+			<thead>
+				<tr>
+					<th field="column1" width="80">column1</th>
+					<th field="column2" width="80">column2</th>
+					<th field="column3" width="80">column3</th>
+					<th field="column4" width="80" >column4</th>
+					<th field="column5" width="80" >column5</th>
+					<th field="column6" width="80" >column6</th>
+					<th field="column7" width="80">column7</th>
+					<th field="column8" width="80">column8</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<div id="selectFilelocation" style="display: none;">
+		<span id="selectFilelocationSpan"></span>
+	</div>
+	       
+	<div id="hdfsDirDiv" style="margin:5px 0;display: block;">
+		 请选择创建hive数据库表的文件：
+		<div class="easyui-panel" style="padding:5px" >
+			<ul id="hdfsDirTree" class="easyui-tree" 
+			data-options="url:'/mssn/service/hdfs/hdfsService/getHdfsDir',onLoadSuccess:loadSuccess, method:'get',animate:true"></ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuzhenbao.it.core.dao.mysql.CatalogMysqlDao" >
+  <resultMap id="catalogMap" type="com.wuzhenbao.it.ro.vo.CatalogVO" >
+    <id column="CATALOG_ID" property="catalogId" jdbcType="INTEGER" />
+    <result column="CATALOT_NAME_CN" property="catalogNameCn" jdbcType="VARCHAR" />
+    <result column="CATALOG_NAME_EN" property="catalogNameEn" jdbcType="VARCHAR" />
+    <result column="CATALOG_URL" property="catalogUrl" jdbcType="VARCHAR" />
+    <result column="CATALOT_TYPE" property="catalogType" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
+    <result column="ISDELETED" property="isDeleted" jdbcType="VARCHAR" />
+    <result column="CREATEBY" property="createBy" jdbcType="INTEGER" />
+    <result column="CREATEDATE" property="createDate" jdbcType="DATE" />
+    <result column="LASTUPDATEBY" property="lastUpdateBy" jdbcType="INTEGER" />
+    <result column="LASTUPDATEDATE" property="lastUpdateDate" jdbcType="DATE" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="catalogTree" resultMap="catalogMap">
+  	SELECT T.CATALOG_ID,
+      T.CATALOT_NAME_CN,
+      T.CATALOG_NAME_EN,
+      T.CATALOG_URL,
+      T.CATALOT_TYPE,
+      T.PARENT_ID,
+      T.ISDELETED,
+      T.CREATEBY,
+      T.CREATEDATE,
+      T.LASTUPDATEBY,
+      T.LASTUPDATEDATE,
+      T.DESCRIPTION
+	  FROM T_SYS_CATALOG T
+	 WHERE T.ISDELETED = 1
+  </select>
+  <select id="pageList" resultMap="catalogMap" >
+  	SELECT T.CATALOG_ID,
+      T.CATALOT_NAME_CN,
+      T.CATALOG_NAME_EN,
+      T.CATALOG_URL,
+      T.CATALOT_TYPE,
+      T.PARENT_ID,
+      T.ISDELETED,
+      T.CREATEBY,
+      T.CREATEDATE,
+      T.LASTUPDATEBY,
+      T.LASTUPDATEDATE,
+      T.DESCRIPTION
+	  FROM T_SYS_CATALOG T
+	 WHERE T.ISDELETED = 1
+		AND T.PARENT_ID = #{pm.catalogId,jdbcType = NUMERIC}
+		LIMIT #{p.startIndex,jdbcType = NUMERIC},#{p.endNo,jdbcType = NUMERIC}
+  </select>
+  
+  <select id="select" resultMap="catalogMap" parameterType="java.lang.Integer" >
+    SELECT CATALOG_ID,
+      CATALOT_NAME_CN,
+      CATALOG_NAME_EN,
+      CATALOG_URL,
+      CATALOT_TYPE,
+      PARENT_ID,
+      ISDELETED,
+      CREATEBY,
+      CREATEDATE,
+      LASTUPDATEBY,
+      LASTUPDATEDATE,
+      DESCRIPTION
+    FROM T_SYS_CATALOG C
+    WHERE C.CATALOG_ID = #{catalogId}
+  </select>
+  <insert id="insert" parameterType="com.wuzhenbao.it.core.CatalogVO" >
+    INSERT INTO T_SYS_CATALOG
+     (CATALOT_NAME_CN,
+      CATALOG_NAME_EN,
+      CATALOG_URL,
+      CATALOT_TYPE,
+      PARENT_ID,
+      ISDELETED,
+      CREATEBY,
+      CREATEDATE,
+      LASTUPDATEBY,
+      LASTUPDATEDATE,
+      DESCRIPTION)
+   VALUES
+     (#{catalogNameCn,jdbcType=VARCHAR},
+      #{catalogNameEn,jdbcType=VARCHAR},
+      #{catalogUrl,jdbcType=VARCHAR},
+      #{catalogType,jdbcType=VARCHAR},
+      #{parentId,jdbcType=INTEGER},
+      '1',
+      #{createBy,jdbcType=INTEGER},
+      now(),
+      #{lastUpdateBy,jdbcType=INTEGER},
+      now(),
+      #{description,jdbcType=VARCHAR}) 
+  </insert>
+  <update id="update" parameterType="com.wuzhenbao.it.core.CatalogVO">
+  	UPDATE T_SYS_CATALOG C SET 
+      CATALOT_NAME_CN = #{catalogNameCn,jdbcType=VARCHAR},
+      CATALOG_NAME_EN = #{catalogNameEn,jdbcType=VARCHAR},
+      CATALOG_URL = #{catalogUrl,jdbcType=VARCHAR},
+      CATALOT_TYPE = #{catalogType,jdbcType=VARCHAR},
+      LASTUPDATEBY = #{lastUpdateBy,jdbcType=INTEGER},
+      LASTUPDATEDATE = now(),
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+      WHERE CATALOG_ID = #{catalogId}
+  </update>
+  <delete id="delete" parameterType="java.lang.Integer">
+  	DELETE T_SYS_CATALOG C SET C.ISDELETED = 0 WHERE C.CATALOG_ID = #{value}
+  </delete>
+  <select id="selectList" resultMap="catalogMap" parameterType="com.wuzhenbao.it.core.CatalogVO">
+  	SELECT CATALOG_ID,
+      CATALOT_NAME_CN,
+      CATALOG_NAME_EN,
+      CATALOG_URL,
+      CATALOT_TYPE,
+      PARENT_ID,
+      ISDELETED,
+      CREATEBY,
+      CREATEDATE,
+      LASTUPDATEBY,
+      LASTUPDATEDATE,
+      DESCRIPTION
+    FROM T_SYS_CATALOG
+    WHERE ISDELETED = 1
+  </select>
+  </mapper>

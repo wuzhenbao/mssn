@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tree Actions - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+	
+    <script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="hadoop/kafka/kafka.js?version=10014"></script>
+	
+</head>
+<body>
+	<h2>Kafka队列列数</h2>
+	<div style="margin:5px 0;border: 1px;float:left;width: 50%; ">
+		<a href="#" class="easyui-linkbutton" onclick="collapseAll()">CollapseAll</a>
+		<a href="#" class="easyui-linkbutton" onclick="expandAll()">ExpandAll</a>
+		<a href="#" class="easyui-linkbutton" onclick="showZKData()">Show Data</a>
+		<a href="#" class="easyui-linkbutton" onclick="createZKnode()">创建节点</a>
+		<a href="#" class="easyui-linkbutton" onclick="deleteZKnode()">删除节点</a>
+	</div>
+	<div style="margin:5px 0;border: 1px;float:right;width: 50%; ">
+		<textarea rows="10" cols="60" id="zkNodeData">[]</textarea>
+	</div>
+	<div>
+		刷新时间：<input type="text" style="border: 0px;" id="refreshTime" >
+	</div>
+	<div class="easyui-panel" style="padding:5px">
+		<ul id="kafkatree" class="easyui-tree" 
+		data-options="url:'/mssn/service/kafka/kafkaService/getAllTopic',
+		onLoadSuccess:loadSuccess,
+		onLoadError:onKafkaLoadError,
+		method:'get',
+		animate:true"></ul>
+	</div>
+	<div id="createZKNodeDiv" style="display: none;">
+		<form action=""  id="createZKNode">
+			<table style="width: 100%;">
+				<tr>
+					<td style="width: 30%;">节点路径(全路径)：</td>
+					<td style="width: 70%;"><input type="text" id="nodePath" style="width: 200px;"></td>
+				</tr>
+				<tr>
+					<td >节点类型:</td>
+					<td><input type="text" id="nodeType" style="width: 200px;"></td>
+				</tr>
+				<tr>
+					<td >节点数据：</td>
+					<td><textarea rows="3" cols="40" id="nodeDate"></textarea></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+&image1=flash/BannerFile_fgadmin__1_2_1_1441.jpg&
+&url1=http://www.gcooler.com&
+&target1=&
+&image2=flash/BannerFile_fgadmin_3352_1_2_1_6444.jpg&
+&url2=http://www.gcooler.com&
+&target2=&
+&num=2&
+&loaded=ok&

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuzhenbao.it.core.mysql.UserMysqlDao" >
+  <resultMap id="userMap" type="com.wuzhenbao.it.core.UserVO" >
+    <id column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="USER_NAME_CN" property="userNameCn" jdbcType="VARCHAR" />
+    <result column="USER_NAME_EN" property="userNameEn" jdbcType="VARCHAR" />
+    <result column="USER_EMAIL" property="userEmail" jdbcType="VARCHAR" />
+    <result column="USER_PHONE" property="userPhone" jdbcType="VARCHAR" />
+    <result column="USER_PASSWORD" property="userPassword" jdbcType="INTEGER" />
+    <result column="USER_ADDRESS" property="userAddress" jdbcType="INTEGER" />
+    <result column="USER_SEX" property="userSex" jdbcType="INTEGER" />
+    <result column="ATTA_ID" property="attaId" jdbcType="INTEGER" />
+    <result column="ISDELETED" property="isDeleted" jdbcType="VARCHAR" />
+    <result column="CREATEBY" property="createBy" jdbcType="INTEGER" />
+    <result column="CREATEDATE" property="createDate" jdbcType="DATE" />
+    <result column="LASTUPDATEBY" property="lastUpdateBy" jdbcType="INTEGER" />
+    <result column="LASTUPDATEDATE" property="lastUpdateDate" jdbcType="DATE" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+  <insert id="addUser" parameterType="com.wuzhenbao.it.core.UserVO" >
+  	 INSERT INTO T_SYS_USER
+      (USER_NAME_CN,
+       USER_NAME_EN,
+       USER_EMAIL,
+       USER_PHONE,
+       USER_PASSWORD,
+       USER_ADDRESS,
+       USER_SEX,
+       ATTA_ID,
+       ISDELETED,
+       CREATEBY,
+       CREATEDATE,
+       LASTUPDATEBY,
+       LASTUPDATEDATE,
+       DESCRIPTION)
+    VALUES
+      (#{userNameCn,jdbcType = VARCHAR},
+       #{userNameEn,jdbcType = VARCHAR},
+       #{userEmail,jdbcType = VARCHAR},
+       #{userPhone,jdbcType = VARCHAR},
+       #{userPassword,jdbcType = VARCHAR},
+       #{userAddress,jdbcType = VARCHAR},
+       #{userSex,jdbcType = VARCHAR},
+       #{attaId,jdbcType = VARCHAR},
+       1,
+       #{createBy},
+       now(),
+       #{lastUpdateBy},
+       now(),
+       #{description,jdbcType = VARCHAR})
+  </insert>
+  <select id="findUserById" resultMap="userMap" parameterType="com.wuzhenbao.it.core.UserVO">
+   	SELECT U.USER_ID,
+       U.USER_NAME_CN,
+       U.USER_NAME_EN,
+       U.USER_EMAIL,
+       U.USER_PHONE,
+       U.USER_PASSWORD,
+       U.USER_ADDRESS,
+       U.USER_SEX,
+       U.ATTA_ID,
+       U.ISDELETED,
+       U.CREATEBY,
+       U.CREATEDATE,
+       U.LASTUPDATEBY,
+       U.LASTUPDATEDATE,
+       U.DESCRIPTION
+       FROM T_SYS_USER U
+       WHERE U.USER_ID = #{userId}
+  </select>
+  <select id="findUserByConditin" resultMap="userMap" parameterType="com.wuzhenbao.it.core.UserVO">
+   	SELECT U.USER_ID,
+       U.USER_NAME_CN,
+       U.USER_NAME_EN,
+       U.USER_EMAIL,
+       U.USER_PHONE,
+       U.USER_PASSWORD,
+       U.USER_ADDRESS,
+       U.USER_SEX,
+       U.ATTA_ID,
+       U.ISDELETED,
+       U.CREATEBY,
+       U.CREATEDATE,
+       U.LASTUPDATEBY,
+       U.LASTUPDATEDATE,
+       U.DESCRIPTION
+       FROM T_SYS_USER U
+       WHERE 1 = 1
+       <if test="pm.userNameCn != null  and pm.userNameCn != ''">
+		AND UPPER(U.USER_NAME_CN) like '%'||UPPER(#{pm.userNameCn})||'%'
+	   </if>
+	   <if test="pm.userNameEn != null and pm.userNameEn != ''">
+		AND UPPER(U.USER_NAME_EN) like '%'||UPPER(#{pm.userNameEn})||'%'
+	   </if>
+	   <if test="pm.userEmail != null and pm.userEmail != ''">
+		AND UPPER(U.USER_EMAIL) like '%'||UPPER(#{pm.userEmail})||'%'
+	   </if>
+	   <if test="pm.userPhone != null and pm.userPhone != ''">
+		AND UPPER(U.USER_PHONE) like '%'||UPPER(#{pm.userPhone})||'%'
+	   </if>
+	   <if test="pm.userAddress != null and pm.userAddress != ''">
+		AND UPPER(U.USER_ADDRESS) like '%'||UPPER(#{pm.userAddress})||'%'
+	   </if>
+	   <if test="pm.userSex != null and pm.userSex != ''">
+		AND U.USER_SEX = #{pm.userSex}
+	   </if>
+  </select>
+  <select id="login" resultMap="userMap" parameterType="com.wuzhenbao.it.core.UserVO">
+   	SELECT U.USER_ID,
+       U.USER_NAME_CN,
+       U.USER_NAME_EN,
+       U.USER_EMAIL,
+       U.USER_PHONE,
+       U.USER_PASSWORD,
+       U.USER_ADDRESS,
+       U.USER_SEX,
+       U.ATTA_ID,
+       U.ISDELETED,
+       U.CREATEBY,
+       U.CREATEDATE,
+       U.LASTUPDATEBY,
+       U.LASTUPDATEDATE,
+       U.DESCRIPTION
+       FROM T_SYS_USER U
+       WHERE U.USER_NAME_CN = #{userNameCn}
+		AND U.USER_PASSWORD = #{userPassword}
+  </select>
+  <update id="updateUser" parameterType="com.wuzhenbao.it.core.UserVO">
+  		UPDATE T_SYS_USER
+		   SET USER_EMAIL     = #{userEmail,jdbcType = VARCHAR},
+		       USER_PHONE     = #{userPhone,jdbcType = VARCHAR},
+		       USER_ADDRESS   = #{userAddress,jdbcType = VARCHAR},
+		       USER_SEX       = #{userSex,jdbcType = VARCHAR},
+		       LASTUPDATEBY   = #{lastUpdateBy,jdbcType = VARCHAR},
+		       LASTUPDATEDATE = now()
+		 WHERE USER_ID = #{userId}
+  </update>
+  <delete id="deleteUser" parameterType="com.wuzhenbao.it.core.UserVO">
+  	UPDATE T_SYS_USER
+		   SET ISDELETED = 0
+		 WHERE USER_ID = #{userId}
+  </delete>
+  <select id="pageList" resultMap="userMap" >
+  	SELECT U.USER_ID,
+       U.USER_NAME_CN,
+       U.USER_NAME_EN,
+       U.USER_EMAIL,
+       U.USER_PHONE,
+       U.USER_PASSWORD,
+       U.USER_ADDRESS,
+       P.NAME USER_SEX,
+       U.ATTA_ID,
+       U.ISDELETED,
+       U.CREATEBY,
+       U.CREATEDATE,
+       U.LASTUPDATEBY,
+       U.LASTUPDATEDATE,
+       U.DESCRIPTION
+       FROM T_SYS_USER U, T_SYS_PROPERTY P
+       WHERE U.ISDELETED = 1
+       AND P.VALUE = U.USER_SEX
+   	   AND P.PATH = 'root.SYSTEM.gender'
+       <if test="pm.userNameCn != null  and pm.userNameCn != ''">
+		AND UPPER(U.USER_NAME_CN) like CONCAT('%',UPPER(#{pm.userNameCn}),'%')
+	   </if>
+	   <if test="pm.userNameEn != null and pm.userNameEn != ''">
+		AND UPPER(U.USER_NAME_EN) like '%'||UPPER(#{pm.userNameEn})||'%'
+	   </if>
+	   <if test="pm.userEmail != null and pm.userEmail != ''">
+		AND UPPER(U.USER_EMAIL) like '%'||UPPER(#{pm.userEmail})||'%'
+	   </if>
+	   <if test="pm.userPhone != null and pm.userPhone != ''">
+		AND UPPER(U.USER_PHONE) like '%'||UPPER(#{pm.userPhone})||'%'
+	   </if>
+	   <if test="pm.userAddress != null and pm.userAddress != ''">
+		AND UPPER(U.USER_ADDRESS) like '%'||UPPER(#{pm.userAddress})||'%'
+	   </if>
+	   <if test="pm.userSex != null and pm.userSex != ''">
+		AND U.USER_SEX = #{pm.userSex}
+	   </if>
+	   ORDER BY U.USER_NAME_CN
+	   LIMIT #{p.startIndex,jdbcType = NUMERIC},#{p.endNo,jdbcType = NUMERIC}
+	  
+  </select>
+  </mapper>

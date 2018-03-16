@@ -1,0 +1,4 @@
+&btnimage1=flash/BannerFile_fgadmin__1_2_5_490.png&
+&btnimage2=flash/BannerFile_fgadmin__1_2_5_4136.png&
+&num=2&
+&loaded=yes&

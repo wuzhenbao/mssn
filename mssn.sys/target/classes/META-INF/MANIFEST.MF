@@ -1,0 +1,107 @@
+Manifest-Version: 1.0
+Built-By: lenovo
+Class-Path: /target/ajaxanywhere-2.1.1.jar /target/jquery-1.11.2.jar /
+ target/AjaxQ-0.0.2.jar /target/spring-aop-4.1.2.RELEASE.jar /target/a
+ opalliance-1.0.jar /target/spring-aspects-4.1.2.RELEASE.jar /target/a
+ spectjweaver-1.8.3.jar /target/spring-beans-4.1.2.RELEASE.jar /target
+ /spring-context-4.1.2.RELEASE.jar /target/spring-core-4.1.2.RELEASE.j
+ ar /target/commons-logging-1.1.3.jar /target/spring-expression-4.1.2.
+ RELEASE.jar /target/spring-jdbc-4.1.2.RELEASE.jar /target/spring-orm-
+ 4.1.2.RELEASE.jar /target/spring-web-4.1.2.RELEASE.jar /target/spring
+ -tx-4.1.2.RELEASE.jar /target/log4j-1.2.9.jar /target/mybatis-3.4.1.j
+ ar /target/mybatis-spring-1.3.0.jar /target/mysql-connector-java-5.0.
+ 8.jar /target/freemarker-2.3.19.jar /target/cxf-rt-frontend-jaxws-3.1
+ .8.jar /target/xml-resolver-1.2.jar /target/asm-5.0.4.jar /target/cxf
+ -core-3.1.8.jar /target/woodstox-core-asl-4.4.1.jar /target/stax2-api
+ -3.1.4.jar /target/xmlschema-core-2.2.1.jar /target/cxf-rt-bindings-s
+ oap-3.1.8.jar /target/cxf-rt-wsdl-3.1.8.jar /target/wsdl4j-1.6.3.jar 
+ /target/cxf-rt-databinding-jaxb-3.1.8.jar /target/cxf-rt-bindings-xml
+ -3.1.8.jar /target/cxf-rt-frontend-simple-3.1.8.jar /target/cxf-rt-ws
+ -addr-3.1.8.jar /target/cxf-rt-ws-policy-3.1.8.jar /target/neethi-3.0
+ .3.jar /target/cxf-rt-frontend-jaxrs-3.1.8.jar /target/cxf-rt-transpo
+ rts-http-3.1.8.jar /target/javax.annotation-api-1.3.jar /target/commo
+ ns-lang3-3.1.jar /target/commons-io-1.3.2.jar /target/commons-fileupl
+ oad-1.3.2.jar /target/commons-beanutils-1.9.3.jar /target/commons-col
+ lections-3.2.2.jar /target/javax.ws.rs-api-2.0.1.jar /target/commons-
+ dbcp-1.4.jar /target/commons-pool-1.5.4.jar /target/hadoop-common-2.6
+ .2.jar /target/hadoop-annotations-2.6.2.jar /target/guava-11.0.2.jar 
+ /target/commons-cli-1.2.jar /target/commons-math3-3.1.1.jar /target/x
+ mlenc-0.52.jar /target/commons-httpclient-3.1.jar /target/commons-cod
+ ec-1.4.jar /target/commons-net-3.1.jar /target/servlet-api-2.5.jar /t
+ arget/jetty-6.1.26.jar /target/jetty-util-6.1.26.jar /target/jersey-c
+ ore-1.9.jar /target/jersey-json-1.9.jar /target/jettison-1.1.jar /tar
+ get/jackson-jaxrs-1.8.3.jar /target/jackson-xc-1.8.3.jar /target/jers
+ ey-server-1.9.jar /target/asm-3.1.jar /target/jasper-compiler-5.5.23.
+ jar /target/jasper-runtime-5.5.23.jar /target/jsp-api-2.1.jar /target
+ /commons-el-1.0.jar /target/jets3t-0.9.0.jar /target/java-xmlbuilder-
+ 0.4.jar /target/commons-lang-2.6.jar /target/commons-configuration-1.
+ 6.jar /target/commons-digester-1.8.jar /target/commons-beanutils-core
+ -1.8.0.jar /target/slf4j-api-1.7.5.jar /target/slf4j-log4j12-1.7.5.ja
+ r /target/jackson-core-asl-1.9.13.jar /target/jackson-mapper-asl-1.9.
+ 13.jar /target/avro-1.7.4.jar /target/paranamer-2.3.jar /target/proto
+ buf-java-2.5.0.jar /target/gson-2.2.4.jar /target/hadoop-auth-2.6.2.j
+ ar /target/apacheds-kerberos-codec-2.0.0-M15.jar /target/apacheds-i18
+ n-2.0.0-M15.jar /target/api-asn1-api-1.0.0-M20.jar /target/api-util-1
+ .0.0-M20.jar /target/jsch-0.1.42.jar /target/curator-client-2.6.0.jar
+  /target/curator-recipes-2.6.0.jar /target/jsr305-1.3.9.jar /target/h
+ trace-core-3.0.4.jar /target/zookeeper-3.4.6.jar /target/commons-comp
+ ress-1.4.1.jar /target/xz-1.0.jar /target/hadoop-hdfs-2.6.2.jar /targ
+ et/commons-daemon-1.0.13.jar /target/netty-3.6.2.Final.jar /target/xe
+ rcesImpl-2.9.1.jar /target/xml-apis-1.3.04.jar /target/hadoop-client-
+ 2.6.2.jar /target/hadoop-mapreduce-client-app-2.6.2.jar /target/hadoo
+ p-mapreduce-client-common-2.6.2.jar /target/hadoop-yarn-client-2.6.2.
+ jar /target/hadoop-yarn-server-common-2.6.2.jar /target/hadoop-mapred
+ uce-client-shuffle-2.6.2.jar /target/leveldbjni-all-1.8.jar /target/h
+ adoop-yarn-api-2.6.2.jar /target/hadoop-mapreduce-client-core-2.6.2.j
+ ar /target/hadoop-yarn-common-2.6.2.jar /target/jersey-client-1.9.jar
+  /target/hadoop-mapreduce-client-jobclient-2.6.2.jar /target/hbase-cl
+ ient-0.96.2-hadoop2.jar /target/hbase-common-0.96.2-hadoop2.jar /targ
+ et/hbase-protocol-0.96.2-hadoop2.jar /target/htrace-core-2.04.jar /ta
+ rget/findbugs-annotations-1.3.9-1.jar /target/junit-4.11.jar /target/
+ hamcrest-core-1.3.jar /target/hive-exec-1.2.1.jar /target/hive-ant-1.
+ 2.1.jar /target/velocity-1.5.jar /target/oro-2.0.8.jar /target/hive-s
+ hims-1.2.1.jar /target/hive-shims-common-1.2.1.jar /target/hive-shims
+ -0.20S-1.2.1.jar /target/hive-shims-0.23-1.2.1.jar /target/hadoop-yar
+ n-server-resourcemanager-2.6.0.jar /target/guice-servlet-3.0.jar /tar
+ get/guice-3.0.jar /target/javax.inject-1.jar /target/jersey-guice-1.9
+ .jar /target/hadoop-yarn-server-applicationhistoryservice-2.6.0.jar /
+ target/hadoop-yarn-server-web-proxy-2.6.0.jar /target/hive-shims-sche
+ duler-1.2.1.jar /target/apache-log4j-extras-1.2.17.jar /target/antlr-
+ runtime-3.4.jar /target/stringtemplate-3.2.1.jar /target/antlr-2.7.7.
+ jar /target/ST4-4.0.4.jar /target/ant-1.9.1.jar /target/ant-launcher-
+ 1.9.1.jar /target/libfb303-0.9.2.jar /target/ivy-2.4.0.jar /target/cu
+ rator-framework-2.6.0.jar /target/groovy-all-2.1.6.jar /target/datanu
+ cleus-core-3.2.10.jar /target/calcite-core-1.2.0-incubating.jar /targ
+ et/calcite-linq4j-1.2.0-incubating.jar /target/eigenbase-properties-1
+ .1.5.jar /target/janino-2.7.6.jar /target/commons-compiler-2.7.6.jar 
+ /target/pentaho-aggdesigner-algorithm-5.1.5-jhyde.jar /target/calcite
+ -avatica-1.2.0-incubating.jar /target/stax-api-1.0.1.jar /target/jlin
+ e-2.12.jar /target/hive-metastore-1.2.1.jar /target/hive-serde-1.2.1.
+ jar /target/opencsv-2.3.jar /target/parquet-hadoop-bundle-1.6.0.jar /
+ target/bonecp-0.8.0.RELEASE.jar /target/derby-10.10.2.0.jar /target/d
+ atanucleus-api-jdo-3.2.6.jar /target/datanucleus-rdbms-3.2.9.jar /tar
+ get/jdo-api-3.0.1.jar /target/jta-1.1.jar /target/libthrift-0.9.2.jar
+  /target/hive-common-1.2.1.jar /target/joda-time-2.5.jar /target/json
+ -20090211.jar /target/hive-service-1.2.1.jar /target/jpam-1.1.jar /ta
+ rget/jetty-all-7.6.0.v20120127.jar /target/geronimo-jta_1.1_spec-1.1.
+ 1.jar /target/mail-1.4.1.jar /target/activation-1.1.jar /target/geron
+ imo-jaspic_1.0_spec-1.0.jar /target/geronimo-annotation_1.0_spec-1.1.
+ 1.jar /target/asm-commons-3.1.jar /target/asm-tree-3.1.jar /target/hi
+ ve-jdbc-1.2.1.jar /target/httpclient-4.4.jar /target/httpcore-4.4.jar
+  /target/jdk.tools-1.6.jar /target/spring-data-mongodb-1.8.0.RELEASE.
+ jar /target/spring-data-commons-1.11.0.RELEASE.jar /target/jcl-over-s
+ lf4j-1.7.12.jar /target/mongo-java-driver-3.4.0-rc1.jar /target/sprin
+ g-data-mongodb-cross-store-1.8.0.RELEASE.jar /target/aspectjrt-1.8.6.
+ jar /target/spring-data-mongodb-log4j-1.8.0.RELEASE.jar /target/jsqlp
+ arser-0.9.4.jar /target/pagehelper-4.0.1.jar /target/jedis-2.9.0.jar 
+ /target/commons-pool2-2.4.2.jar /target/sqoop-client-1.99.6.jar /targ
+ et/sqoop-common-1.99.6.jar /target/json-simple-1.1.jar /target/kafka-
+ clients-0.9.0.1.jar /target/snappy-java-1.1.1.7.jar /target/lz4-1.2.0
+ .jar /target/json-lib-2.4-jdk15.jar /target/morph-1.1.1.jar /target/c
+ omposite-1.1.jar /target/ezmorph-1.0.5.jar /target/jaxb-api-2.2.11.ja
+ r /target/jaxb-core-2.2.11.jar /target/jaxb-impl-2.2.11.jar /target/d
+ erbyLocale_zh_CN-10.10.2.0.jar /target/derbyLocale_zh_TW-10.10.2.0.ja
+ r
+Build-Jdk: 1.8.0_111
+Created-By: Maven Integration for Eclipse
+

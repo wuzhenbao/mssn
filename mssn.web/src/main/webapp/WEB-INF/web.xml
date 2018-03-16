@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<display-name>mssn</display-name>
+	<!---->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>resourceFilter</filter-name>
+		<filter-class>com.wuzhenbao.it.core.filter.ResourceFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>resourceFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>redirectFilter</filter-name>
+		<filter-class>com.wuzhenbao.it.core.filter.RedirectFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>redirectFilter</filter-name>
+		<url-pattern>/redirectUrl</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>charEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>charEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>  
+		<servlet-name>CXFServlet</servlet-name>  
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>  
+		<load-on-startup>1</load-on-startup>  
+		<init-param>
+			<param-name>hide-service-list-page</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</servlet>  
+	<servlet-mapping>  
+		<servlet-name>CXFServlet</servlet-name>  
+		<url-pattern>/service/*</url-pattern>  
+	</servlet-mapping>
+	<!-- 上传servlet的配置 -->
+	
+    <servlet>
+        <servlet-name>uploadServlet</servlet-name>
+        <servlet-class>com.wuzhenbao.it.core.servlet.MyUploadServlet</servlet-class>
+        <init-param>
+        	<param-name>savePath</param-name>
+        	<param-value>D:/workspace_maven/upload/</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadServlet</servlet-name>
+        <url-pattern>/servlet/uploadServlet</url-pattern>
+    </servlet-mapping>
+    <!-- 下载servlet的配置 -->
+	
+    <servlet>
+        <servlet-name>downloadServlet</servlet-name>
+        <servlet-class>com.wuzhenbao.it.core.servlet.MyDownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>downloadServlet</servlet-name>
+        <url-pattern>/servlet/downloadServlet</url-pattern>
+    </servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>welcom.html</welcome-file>
+	</welcome-file-list>
+</web-app>

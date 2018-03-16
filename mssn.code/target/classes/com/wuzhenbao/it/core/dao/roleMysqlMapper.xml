@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuzhenbao.it.core.mysql.RoleMysqlDao" >
+  <resultMap id="roleMap" type="com.wuzhenbao.it.core.RoleVO" >
+    <id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="ISDELETED" property="isDeleted" jdbcType="VARCHAR" />
+    <result column="CREATEBY" property="createBy" jdbcType="INTEGER" />
+    <result column="CREATEDATE" property="createDate" jdbcType="DATE" />
+    <result column="LASTUPDATEBY" property="lastUpdateBy" jdbcType="INTEGER" />
+    <result column="LASTUPDATEDATE" property="lastUpdateDate" jdbcType="DATE" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getRoleList" resultMap="roleMap" parameterType="com.wuzhenbao.it.core.RoleVO">
+  		SELECT ROLE_ID,
+		       ROLE_NAME,
+		       ISDELETED,
+		       CREATEBY,
+		       CREATEDATE,
+		       LASTUPDATEBY,
+		       LASTUPDATEDATE,
+		       DESCRIPTION
+		  FROM T_SYS_ROLE R
+		  WHERE R.ISDELETED = 1
+		  <if test="roleName != null  and roleName != ''">
+			AND UPPER(R.ROLE_NAME) LIKE '%'||UPPER(#{roleName})||'%'
+		  </if>
+  </select>
+  <select id="getRole" resultMap="roleMap" parameterType="com.wuzhenbao.it.core.RoleVO">
+  		SELECT ROLE_ID,
+		       ROLE_NAME,
+		       ISDELETED,
+		       CREATEBY,
+		       CREATEDATE,
+		       LASTUPDATEBY,
+		       LASTUPDATEDATE,
+		       DESCRIPTION
+		  FROM T_SYS_ROLE R
+		  WHERE R.ISDELETED = 1
+		  AND R.ROLE_NAME LIKE '%'||UPPER(#{roleName})||'%'
+  </select>
+  <select id="getRoleVOById" resultMap="roleMap" parameterType="java.lang.Integer">
+  		SELECT ROLE_ID,
+		       ROLE_NAME,
+		       ISDELETED,
+		       CREATEBY,
+		       CREATEDATE,
+		       LASTUPDATEBY,
+		       LASTUPDATEDATE,
+		       DESCRIPTION
+		  FROM T_SYS_ROLE R
+		  WHERE R.ROLE_ID = #{roleId}
+  </select>
+  <select id="pageList" resultMap="roleMap" >
+  	SELECT ROLE_ID,
+		       ROLE_NAME,
+		       ISDELETED,
+		       CREATEBY,
+		       CREATEDATE,
+		       LASTUPDATEBY,
+		       LASTUPDATEDATE,
+		       DESCRIPTION
+		  FROM T_SYS_ROLE R
+		  WHERE R.ISDELETED = 1
+		  <if test="r.roleName != null  and r.roleName != ''">
+			AND UPPER(R.ROLE_NAME) LIKE '%'||UPPER(#{r.roleName})||'%'
+		  </if>
+		  ORDER BY R.ROLE_NAME
+  </select>
+  <insert id="addRole"  parameterType="com.wuzhenbao.it.core.RoleVO">
+  		INSERT INTO T_SYS_ROLE
+		  (ROLE_NAME,
+		   ISDELETED,
+		   CREATEBY,
+		   CREATEDATE,
+		   LASTUPDATEBY,
+		   LASTUPDATEDATE,
+		   DESCRIPTION)
+		VALUES
+		  (#{roleName,jdbcType = VARCHAR},
+		   1,
+	       #{createBy},
+	       now(),
+	       #{lastUpdateBy},
+	       now(),
+	       #{description,jdbcType = VARCHAR})
+  </insert>
+  
+  <update id="updateRole"  parameterType="com.wuzhenbao.it.core.RoleVO">
+  	  UPDATE T_SYS_ROLE
+	   SET ROLE_NAME      = #{roleName,jdbcType = VARCHAR},
+	       LASTUPDATEBY   = #{lastUpdateBy},
+	       LASTUPDATEBY   = #{lastUpdateBy},
+	       LASTUPDATEDATE = now(),
+	       DESCRIPTION    = #{description,jdbcType = VARCHAR}
+	 WHERE ROLE_ID = #{roleId}
+  </update>
+  
+  <update id="deleteRole"  parameterType="com.wuzhenbao.it.core.RoleVO">
+  	  UPDATE T_SYS_ROLE
+	   SET ISDELETED      = 0,
+	       LASTUPDATEBY   = #{lastUpdateBy},
+	       LASTUPDATEDATE = now()
+	 WHERE ROLE_ID = #{roleId}
+  </update>
+  </mapper>

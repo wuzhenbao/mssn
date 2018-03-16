@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tree Actions - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.1/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+	
+    <script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="hadoop/uploadToHDFS.js?version=10014"></script>
+	<script type="text/javascript" src="hadoop/mapReduce.js?version=10012"></script>
+	
+</head>
+<body>
+	<h2>Tree Actions</h2>
+	<p>Click the buttons below to perform actions.</p>
+	<div style="margin:5px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="collapseAll()">CollapseAll</a>
+		<a href="#" class="easyui-linkbutton" onclick="expandAll()">ExpandAll</a>
+		<a href="#" class="easyui-linkbutton" onclick="expandTo()">ExpandTo</a>
+		<a href="#" class="easyui-linkbutton" onclick="getSelected()">GetSelected</a>
+		<a href="#" class="easyui-linkbutton" onclick="createFolder()">Create Folder</a>
+		<a href="#" class="easyui-linkbutton" onclick="refreshHDFSDir()">Refresh Folder</a>
+		<a href="#" class="easyui-linkbutton" onclick="uploadFileDialog()">Upload File</a>
+		<a href="#" class="easyui-linkbutton" onclick="deleteFolderOrFile()">Delete Folder/File</a>
+		<a href="#" class="easyui-linkbutton" onclick="downloadFile()">Download File</a>
+	</div>
+	<div style="margin:5px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="dataDistinct()">数据去重</a>
+		<a href="#" class="easyui-linkbutton" onclick="dataSort()">数据排序</a>
+		<a href="#" class="easyui-linkbutton" onclick="dataAvg()">求平均值</a>
+		<a href="#" class="easyui-linkbutton" onclick="dataJoin()">单表关联</a>
+		<a href="#" class="easyui-linkbutton" onclick="dataJoinMult()">多表关联</a>
+		<a href="#" class="easyui-linkbutton" onclick="dataSortDesc()">倒排索引</a>
+	</div>
+	<div class="easyui-panel" style="padding:5px">
+		<ul id="tt" class="easyui-tree" 
+		data-options="url:'/mssn/service/hdfs/hdfsService/getHdfsDir',onLoadSuccess:loadSuccess, method:'get',animate:true"></ul>
+	</div>
+	<div id="uploadDiv" title="Upload File">
+		<p>请选择文件进行上传！</p>
+		 <form name="upform" action="" method="POST" enctype="multipart/form-data" >   
+		    <input type ="file" style="margin:5px 0;" name="myfile1" id="myfile1"/><br/>   
+		    <input type ="file" name="myfile2" id="myfile2"/><br/>  
+		    <input type ="file" style="margin:5px 0;" name="myfile3" id="myfile3"/><br/>  
+		  </form>
+	</div>
+	<div id="downloadDiv" style="display: none;">
+		<form name="ldform" action="/mssn/servlet/downloadServlet"
+			method="POST" target="">
+			<input type="hidden" name="downloadDate">
+			<input type="hidden" name="filePath">
+		</form>
+	</div>
+	<div id="inputDriDiv" style="display: none;">
+		<p>请输入目录名称！</p>
+		<br> 
+		<input type="text" style="height: 20px;" size="50" id="newDirPath" /><br />
+	</div>
+	
+</body>
+</html>

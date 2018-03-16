@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuzhenbao.it.core.mysql.PermissionMysqlDao" >
+  <resultMap id="permissionMap" type="com.wuzhenbao.it.core.PermissionVO" >
+    <id column="PERMISSION_ITEM_ID" property="permissionItemId" jdbcType="INTEGER" />
+    <result column="PERMISSION_CODE" property="permissCode" jdbcType="VARCHAR" />
+    <result column="PERMISSION_DESC" property="permissDesc" jdbcType="VARCHAR" />
+    <result column="OPERATION_CODE" property="operationCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_DESC" property="operationDesc" jdbcType="VARCHAR" />
+    <result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+    <result column="ISDELETED" property="isDeleted" jdbcType="VARCHAR" />
+    <result column="CREATEBY" property="createBy" jdbcType="INTEGER" />
+    <result column="CREATEDATE" property="createDate" jdbcType="DATE" />
+    <result column="LASTUPDATEBY" property="lastUpdateBy" jdbcType="INTEGER" />
+    <result column="LASTUPDATEDATE" property="lastUpdateDate" jdbcType="DATE" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getPermissionTree" resultMap="permissionMap" 
+  		   parameterType="com.wuzhenbao.it.core.PermissionVO">
+  		SELECT PERMISSION_ITEM_ID,
+		       PERMISSION_CODE,
+		       PERMISSION_DESC,
+		       OPERATION_CODE,
+		       OPERATION_DESC,
+		       CLASS_NAME,
+		       ISDELETED,
+		       CREATEBY,
+		       CREATEDATE,
+		       LASTUPDATEBY,
+		       LASTUPDATEDATE,
+		       DESCRIPTION
+		  FROM T_PERMISSION_ITEM P
+		  WHERE P.ISDELETED = 1
+  </select>
+  
+  </mapper>
